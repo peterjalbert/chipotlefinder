@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Find Chipotle</title>
+        <link rel="icon" href="favicon.png">
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+        <link rel = "stylesheet" href = "map.css">
+    </head>
+    <body>
+        <h1>The Chipotle</h1>
+        <img id = title_logo src = "chipotle_logo.png" alt = "Chipotle logo">
+        <h1> Finder</h1>
+        <br><br><br>
+        <div id = "map"></div>
+        <br><br><br>
+        <div id = "button_container" class = "w3-container">
+        </div>
+        <div id = "footer">
+            <h6 id = "credit">Developed with Brackets</h6>
+            <h6 id = "sign">Peter Jalbert</h6>
+        </div>
+        <script src = "chipotle.js"></script>
+        <script src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBxp_I8kbJzElBDyzHJ1g_gBrC9Lk6L3cQ&libraries=places&callback=initMap" async defer></script>
+    </body>
+</html>
