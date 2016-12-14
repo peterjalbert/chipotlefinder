@@ -90,7 +90,7 @@ function noChipotle(){
     var element = document.getElementById("button_container");
     var error = document.createElement("div");
     error.className = "failed";
-    var errorText = document.createTextNode("No Chiptole Nearby...");
+    var errorText = document.createTextNode("No Chipotle Nearby...");
     error.appendChild(errorText);
     element.appendChild(error);
 }
