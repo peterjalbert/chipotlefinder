@@ -13,6 +13,7 @@ var idArray = [];
 function initMap() {
     /* Initializes the map and begins the application cycle.
     */
+    detectBrowser();
     var mapOptions = {
         zoom: 14
     };
@@ -178,4 +179,17 @@ function openBoolean(bool) {
     else {
         return "Maybe another time! :("
     }
+}
+
+function detectBrowser() {
+  var useragent = navigator.userAgent;
+  var mapdiv = document.getElementById("map");
+
+  if (useragent.indexOf('iPhone') != -1 || useragent.indexOf('Android') != -1 ) {
+    mapdiv.style.width = '100%';
+    mapdiv.style.height = '100%';
+  } else {
+    mapdiv.style.width = '75%';
+    mapdiv.style.height = '75%';
+  }
 }
