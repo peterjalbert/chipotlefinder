@@ -45,13 +45,13 @@ function initMap() {
             //Searches for nearby Chipotle
             service.nearbySearch(request, callback);
         }, function () {
-            //handleLocationError(true, infowindow, map.getCenter());
-            console.log("Location found.")
+            infowindow = new google.maps.InfoWindow({map:map});
+            handleLocationError(true, infowindow, map.getCenter());
+
         });
     } else {
-        console.log(navigator.geolocation);
-        infowindow = new google.maps.InfoWindow();
         // Browser doesn't support Geolocation
+        infowindow = new google.maps.InfoWindow({map:map});
         handleLocationError(false, infowindow, map.getCenter());
     }
 

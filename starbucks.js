@@ -46,10 +46,11 @@ function initMap() {
             //Searches for nearby Chipotle
             service.nearbySearch(request, callback);
         }, function () {
+            infowindow = new google.maps.InfoWindow({map:map});
             handleLocationError(true, infowindow, map.getCenter());
         });
     } else {
-        infowindow = new google.maps.InfoWindow();
+        infowindow = new google.maps.InfoWindow({map:map});
         // Browser doesn't support Geolocation
         handleLocationError(false, infowindow, map.getCenter());
     }
