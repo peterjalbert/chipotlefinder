@@ -45,7 +45,8 @@ function initMap() {
             //Searches for nearby Chipotle
             service.nearbySearch(request, callback);
         }, function () {
-            handleLocationError(true, infowindow, map.getCenter());
+            //handleLocationError(true, infowindow, map.getCenter());
+            console.log("Location found.")
         });
     } else {
         console.log(navigator.geolocation);
