@@ -35,8 +35,8 @@ function initMap() {
             map.setCenter(pos);
 
             var request = {
-                location:pos,
-                radius:5000,
+                location: pos,
+                radius: 5000,
                 keyword: ['Starbucks']
             };
 
@@ -44,17 +44,17 @@ function initMap() {
             var service = new google.maps.places.PlacesService(map);
             
             //Searches for nearby Chipotle
-            service.nearbySearch(request,callback);
-        }, function() {
-            handleNoGeolocation(true);
+            service.nearbySearch(request, callback);
+        }, function () {
+            handleLocationError(true, infowindow, map.getCenter());
         });
     } else {
         // Browser doesn't support Geolocation
-        handleNoGeolocation(false);
+        handleLocationError(false, infowindow, map.getCenter());
     }
 
     function callback(results, status) {
-        if (status == google.maps.places.PlacesServiceStatus.OK) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
             console.log(results);
             
             for (var i = 0; i < results.length; i++) {
@@ -83,6 +83,13 @@ function initMap() {
         }
     }
 }
+
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+      }
 
 function noStarbucks(){
     /* In the event that no Starbucks are located in the search radius, 

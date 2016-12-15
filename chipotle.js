@@ -9,7 +9,6 @@ var infowindow;
 var cardCount = 1;
 var idArray = [];
 
-
 function initMap() {
     /* Initializes the map and begins the application cycle.
     */
@@ -22,7 +21,7 @@ function initMap() {
 
     // Try HTML5 geolocation
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
+        navigator.geolocation.getCurrentPosition(function (position) {
             pos = new google.maps.LatLng(position.coords.latitude,
                                          position.coords.longitude);
 
@@ -35,8 +34,8 @@ function initMap() {
             map.setCenter(pos);
 
             var request = {
-                location:pos,
-                radius:5000,
+                location: pos,
+                radius: 5000,
                 keyword: ['Chipotle Mexican Grill']
             };
 
@@ -44,17 +43,17 @@ function initMap() {
             var service = new google.maps.places.PlacesService(map);
             
             //Searches for nearby Chipotle
-            service.nearbySearch(request,callback);
-        }, function() {
-            handleNoGeolocation(true);
+            service.nearbySearch(request, callback);
+        }, function () {
+            handleLocationError(true, infowindow, map.getCenter());
         });
     } else {
         // Browser doesn't support Geolocation
-        handleNoGeolocation(false);
+        handleLocationError(false, infowindow, map.getCenter());
     }
 
     function callback(results, status) {
-        if (status == google.maps.places.PlacesServiceStatus.OK) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
             console.log(results);
             
             for (var i = 0; i < results.length; i++) {
@@ -84,7 +83,14 @@ function initMap() {
     }
 }
 
-function noChipotle(){
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+    infoWindow.setPosition(pos);
+    infoWindow.setContent(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+}
+
+function noChipotle() {
     /* In the event that no Chipotles are located in the search radius, 
     this function adds an element to the page that alerts the user.
     */
@@ -100,8 +106,8 @@ function createMarker(place) {
     /* Given a place from the Google Places search results, this function
     adds a marker to the main map, and labels it with the place name.
     */
-        var placeLoc = place.geometry.location;
-        var marker = new google.maps.Marker({
+    var placeLoc = place.geometry.location;
+    var marker = new google.maps.Marker({
           map: map,
           position: placeLoc
         });
